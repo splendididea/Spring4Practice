@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+<!--    <parameterMap id="board" type="com.mufasa.springmvc.model.board.dto.BoardDTO">
+        <parameter property="bno" javaType="int"></parameter>
+        <parameter property="title" javaType="String"></parameter>
+        <parameter property="content" javaType="String"></parameter>
+        <parameter property="writer" javaType="String"></parameter>
+        <parameter property="reg_date" javaType="Date"></parameter>
+        <parameter property="mod_date" javaType="Date"></parameter>
+    </parameterMap>-->
+
+    <select id="selectListBoard" resultType="com.mufasa.springmvc.model.board.dto.BoardDTO">
+      select bno
+            ,title
+            ,content
+            ,writer
+            ,reg_date
+            ,mod_date
+        from T_BOARD
+    </select>
+</mapper>
