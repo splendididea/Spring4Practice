@@ -12,12 +12,8 @@ import java.util.List;
  */
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-
-    @Inject
-    SqlSession sqlSession;
-
     @Override
     public List<BoardDTO> listBoard() {
-        return sqlSession.selectList("selectListBoard");
+        return null;
     }
 }
