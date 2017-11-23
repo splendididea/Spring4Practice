@@ -7,7 +7,20 @@
         select now()
     </select>
     <insert id="insertMember">
-        insert into tbl_member(userid, userpw, username, email) VALUES
-        (#{userid} ,#{userpw},#{username} ,#{email})
+        insert into tbl_member(userid, userpw, username, email)
+        VALUES (#{userid} ,#{userpw},#{username} ,#{email})
     </insert>
+
+    <select id="readMember" resultType="com.mufasa.domain.MemberVO">
+        select *
+          from tbl_member
+        where userid = #{userid}
+    </select>
+
+    <select id="readMemberWithPw" resultType="com.mufasa.domain.MemberVO">
+        select *
+          from tbl_member
+        where userid = #{userid}
+          and userpw = #{userpw}
+    </select>
 </mapper>
