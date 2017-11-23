@@ -10,19 +10,18 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration( locations = { "file:web/WEB-INF/application*.xml" })
+@ContextConfiguration(locations = {"file:web/WEB-INF/applicationContext.xml"})
 public class DataSourceTest {
 
     @Inject
     DataSource ds;
 
     @Test
-    public void testConnction() {
+    public void getConnection()throws Exception{
         try(Connection conn = ds.getConnection()){
             System.out.println(conn);
-        } catch (SQLException e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
