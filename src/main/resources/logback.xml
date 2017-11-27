@@ -17,7 +17,7 @@
 
 	<appender name="LOGFILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/WEB-INF/logback.log</file>
+		<file>/Users/mufasa/Documents/logback.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>logback.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<!-- 30일 지난 파일은 삭제한다. -->
