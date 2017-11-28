@@ -21,8 +21,22 @@ public class BoardController {
 
     @RequestMapping(value = "/register" ,method = RequestMethod.GET)
     public void registGet(BoardVO boardVO,Model model) throws Exception{
+        model.addAttribute("result" , "success");
         logger.info("register get...............");
     }
 
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public String registerPost(BoardVO boardVO, Model model) throws Exception {
+        logger.info("register post...............s");
+        logger.info(boardVO.toString());
+        boardService.regist(boardVO);
+        model.addAttribute("result" ,"success");
+        // return "/board/success";
+        return "redirect:/board/listAll";
+    }
 
+    @RequestMapping(value = "listAll" , method = RequestMethod.GET )
+    public void listAll(Model model){
+        logger.info("in listAll..........");
+    }
 }
