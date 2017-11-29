@@ -48,4 +48,13 @@ public class BoardController {
     public void read(@RequestParam("bno")int bno, Model model) throws Exception{
         model.addAttribute(boardService.read(bno));
     }
+
+    @RequestMapping(value = "remove" )
+    public String remove(@RequestParam("bno") int bno,RedirectAttributes rtts) throws Exception{
+        boardService.remove(bno);
+        rtts.addFlashAttribute("msg" ,"SUCCESS");
+        return "redirect:/board/listAll";
+    }
+
+
 }
