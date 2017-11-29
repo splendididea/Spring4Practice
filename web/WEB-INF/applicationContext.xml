@@ -18,23 +18,35 @@
         <property name="password" value="1234" />
     </bean>-->
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <!-- mybatis mapper interface bean을 자동으로 검색하여 생성함 -->
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/mydb" />
+        <property name="url" value="jdbc:mysql://127.0.0.1/test" />
+        <property name="username" value="mufasa" />
+        <property name="password" value="kr3557kr" />
+    </bean>-->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/test" />
+
+        <property name="username" value="mufasa" />
+        <property name="password" value="kr3557kr" />
     </bean>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+        <property name="configLocation" value="classpath:/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml "/>
     </bean>
 
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" ></constructor-arg>
+        <constructor-arg ref="sqlSessionFactory" />
     </bean>
-
-    <!-- mybatis mapper interface bean을 자동으로 검색하여 생성함 -->
-    <mybatis-spring:scan
-            base-package="com.mufasa.springmvc.model"/>
-
+    <!--
+        Repository 어노테이션만으로는 스프링이 바라보지 못한다.
+        아래와 같이 스캔을 해줘야 한다
+    -->
+    <context:component-scan base-package="com.mufasa.springmvc.persistence" />
+    <context:component-scan base-package="com.mufasa.springmvc.service" />
 </beans>

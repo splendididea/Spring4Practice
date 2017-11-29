@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../include/header.jsp"%>
+
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">SUCCESS PAGE</h3>
