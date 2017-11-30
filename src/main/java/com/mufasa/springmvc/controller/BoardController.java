@@ -2,6 +2,7 @@ package com.mufasa.springmvc.controller;
 
 import com.mufasa.springmvc.domain.BoardVO;
 import com.mufasa.springmvc.service.BoardService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -56,5 +57,17 @@ public class BoardController {
         return "redirect:/board/listAll";
     }
 
+    @RequestMapping(value = "modify" , method = RequestMethod.GET)
+    public void modifyGET(@RequestParam("bno")int bno, Model model) throws Exception{
+        model.addAttribute(boardService.read(bno));
+    }
+
+    @RequestMapping(value = "modify", method = RequestMethod.POST)
+    public String modifyPOST(BoardVO boardVO, RedirectAttributes rtts) throws Exception{
+        logger.info("mod post.....");
+        boardService.modify(boardVO);
+        rtts.addFlashAttribute("msg","SUCCESS");
+        return "redirect:/board/listAll";
+    }
 
 }
