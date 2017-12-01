@@ -33,4 +33,12 @@
          WHERE bno <![CDATA[ > ]]> 0
         ORDER BY bno DESC, regdate DESC
     </select>
+
+    <select id="listPage" resultType="BoardVO">
+        SELECT bno, title, content, writer, regdate, viewcnt
+         FROM tbl_board
+         WHERE bno <![CDATA[ > ]]> 0
+         ORDER BY bno DESC , regdate DESC
+         limit #{page} , 10
+    </select>
 </mapper>

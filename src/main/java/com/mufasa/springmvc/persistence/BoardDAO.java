@@ -16,4 +16,6 @@ public interface BoardDAO {
 
     List<BoardVO> listAll() throws Exception;
 
+    List<BoardVO> listPage(int page) throws Exception;
+
 }
