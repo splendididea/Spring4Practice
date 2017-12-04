@@ -5,14 +5,18 @@ import com.mufasa.springmvc.persistence.BoardDAO;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = { "file:web/WEB-INF/applicationContext.xml"})
 public class BoardDAOTest {
+    private static Logger  logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
     @Inject
     private BoardDAO boardDAO;
@@ -41,4 +45,13 @@ public class BoardDAOTest {
         boardDAO.update(boardVO);
     }
 
+    @Test
+    public void testListPage() throws Exception {
+        int page = 3;
+        List<BoardVO> list = boardDAO.listPage(page);
+
+        for(BoardVO boardVO : list){
+            logger.info(boardVO.getTitle());
+        }
+    }
 }
